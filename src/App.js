@@ -1,40 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+ 
+import Login from './components/Login';
+// import Dashboard from './Dashboard';
+// import Home from './Home';
+ 
 function App() {
-    return (
-		<Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-    );
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div>
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Login} />
+              {/* <Route path="/login" component={Login} />
+              <Route path="/dashboard" component={Dashboard} /> */}
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
-
+ 
 export default App;
