@@ -1,16 +1,32 @@
-import React from 'react'
-import { Container, TextField, Grid, Button } from '@material-ui/core'
+import React from 'react';
+import { Container, TextField, Grid, Button } from '@material-ui/core';
 
 class Login extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             formData: null,
-        }
+        };
+        console.log('Started');
     }
+
     handleSubmit = () => {
-        this.props.history.push('/dashboard')
-    }
+        console.log('Submitting');
+        console.log(this.state.formData);
+        this.props.history.push('/dashboard');
+    };
+
+    handleTextInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        this.setState({
+            formData: {
+                ...this.state.formData,
+                [name]: value,
+            },
+        });
+    };
     render() {
         return (
             <Container maxWidth="100%" style={{ height: '100vh' }}>
@@ -26,13 +42,20 @@ class Login extends React.Component {
                         <h1>Hospital Management System</h1>
                     </Grid>
                     <Grid item>
-                        <TextField id="filled-basic" label="Name" />
+                        <TextField
+                            id="filled-basic"
+                            label="Name"
+                            onChange={this.handleTextInput}
+                            name="name"
+                        />
                     </Grid>
                     <Grid item>
                         <TextField
                             id="filled-basic"
                             label="Password"
                             type="password"
+                            onChange={this.handleTextInput}
+                            name="password"
                         />
                     </Grid>
                     <Grid item>
@@ -46,7 +69,7 @@ class Login extends React.Component {
                     </Grid>
                 </Grid>
             </Container>
-        )
+        );
     }
 }
-export default Login
+export default Login;
