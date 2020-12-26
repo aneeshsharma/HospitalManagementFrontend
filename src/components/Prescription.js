@@ -1,13 +1,21 @@
 import React from 'react';
-import Search from 'react-search';
-import { Container, TextField, Grid, Button } from '@material-ui/core';
+
+import {
+    Container,
+    TextField,
+    Grid,
+    Button,
+    Select,
+    MenuItem,
+} from '@material-ui/core';
 
 class Prescription extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formData: null,
+            formData: {},
             drugList: [],
+            selectedDrug: '',
         };
         console.log('Started');
     }
@@ -19,7 +27,6 @@ class Prescription extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
-        this.props.history.push('/dashboard');
     };
 
     handleTextInput = (e) => {
@@ -48,22 +55,89 @@ class Prescription extends React.Component {
         });
     };
 
-    handleDrugsList = (items) => {
-        console.log(items);
+    handleDrugInput = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            selectedDrug: e.target.value,
+        });
+    };
+
+    handleDrugAdd = () => {
+        const value = this.state.selectedDrug;
+
+        var list = this.state.formData.drugs;
+        if (!list) list = [];
+        list.push(value);
+        this.setState({
+            formData: {
+                ...this.formData,
+                drugs: list,
+            },
+            selectedDrug: '',
+        });
+    };
+
+    renderDrugInput = () => {
+        var menuItems = this.state.drugList.map((item) => {
+            return <MenuItem value={item.id}>{item.value}</MenuItem>;
+        });
+        return (
+            <Grid
+                container
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                style={{ height: '100%' }}
+            >
+                <Grid item xs={3}>
+                    <Select
+                        value={this.state.selectedDrug}
+                        fullWidth
+                        onChange={this.handleDrugInput}
+                        displayEmpty
+                    >
+                        <MenuItem value="" disabled>
+                            --- Select Drugs ---
+                        </MenuItem>
+                        {menuItems}
+                    </Select>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={this.handleDrugAdd}
+                    >
+                        Add
+                    </Button>
+                </Grid>
+            </Grid>
+        );
+    };
+
+    renderDrugList = () => {
+        var drugs = this.state.formData.drugs;
+        if (!drugs) drugs = [];
+        var list = drugs.map((id) => {
+            var item = this.state.drugList.filter((t) => t.id === id)[0];
+            return <Grid item>{item.value}</Grid>;
+        });
+        return list;
     };
 
     render() {
+        let renderDrugInput = this.renderDrugInput();
+
+        let renderDrugList = this.renderDrugList();
         return (
-            <Container maxWidth="100%" style={{ height: '100vh' }}>
+            <Container style={{ height: '100vh' }}>
                 <Grid
                     container
                     direction="column"
-                    justify="center"
                     spacing={2}
-                    alignItems="center"
                     style={{ height: '100%' }}
                 >
-                    <Grid Item>
+                    <Grid item>
                         <h1>Prescription</h1>
                     </Grid>
                     <Grid item>
@@ -74,16 +148,8 @@ class Prescription extends React.Component {
                             name="patientName"
                         />
                     </Grid>
-
-                    <Search
-                        items={this.state.drugList}
-                        placeholder="Pick drugs"
-                        maxSelected={100}
-                        multiple={true}
-                        onItemsChanged={this.handleDrugsList.bind(this)}
-                        style={{ border: '1px solid black' }}
-                    />
-
+                    {renderDrugList}
+                    <Grid item>{renderDrugInput}</Grid>
                     <Grid item>
                         <Button
                             variant="contained"
