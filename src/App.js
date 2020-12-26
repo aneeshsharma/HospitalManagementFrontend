@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
  
 import Login from './components/Login';
-// import Dashboard from './Dashboard';
+import Dashboard from './components/Dashboard';
 // import Home from './Home';
  
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Login} />
+              <Route path="/dashboard" component={Dashboard} />
               {/* <Route path="/login" component={Login} />
               <Route path="/dashboard" component={Dashboard} /> */}
             </Switch>
