@@ -11,14 +11,19 @@ function App() {
     const NavRoutes = () => {
         return (
             <div>
-                <Container maxWidth="100%">
+                <div style={{ width: '100%', margin: '0', padding: '0' }}>
                     <Grid
                         container
                         direction="row"
                         justify="center"
                         spacing={2}
                         alignItems="center"
-                        style={{ height: 100 }}
+                        style={{
+                            height: 100,
+                            background: '#ddd',
+                            width: '100%',
+                            margin: 0,
+                        }}
                     >
                         <Grid item>
                             <Avatar src="/static/images/avatar/avatar.png" />
@@ -27,7 +32,7 @@ function App() {
                             <h1> Name Placeholder </h1>
                         </Grid>
                     </Grid>
-                </Container>
+                </div>
                 <Switch>
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/prescription" component={Prescription} />
@@ -38,16 +43,12 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <div>
-                    <div className="content">
-                        <Switch>
-                            <Route exact path="/" component={Login} />
-                            <Route component={NavRoutes} />
-                            {/* <Route path="/login" component={Login} />
+                <Switch>
+                    <Route exact path="/" component={Login} />
+                    <Route component={NavRoutes} />
+                    {/* <Route path="/login" component={Login} />
               <Route path="/dashboard" component={Dashboard} /> */}
-                        </Switch>
-                    </div>
-                </div>
+                </Switch>
             </BrowserRouter>
         </div>
     );
