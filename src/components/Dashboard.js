@@ -1,18 +1,26 @@
 import React from 'react';
-import { Container, TextField, Grid, Button, Avatar } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
-import { MemoryRouter as Router } from 'react-router';
+import { Container, Grid } from '@material-ui/core';
 
-const LinkBehavior = React.forwardRef((props, ref) => (
-  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
-));
-
-function Login() {
+function Dashboard() {
   return (
-    <Container maxWidth="100%" style={{height:"100vh"}}>
-        <h1> Dashboard </h1>
+    <Container maxWidth="100%">
+        <Grid container direction="column" alignItems="center" >
+            <Grid container direction="row" justify="center" spacing={2} alignItems="center" style={{ width: "100%" }}>
+                <Grid item>
+                    <h1>Hello</h1>
+                </Grid>
+                <Grid item>
+                    <h2> HI</h2>
+                </Grid>
+            </Grid>
+            <Grid container direction="row" alignItems="center" style={{ width: "100$" }}>
+                <Grid item>
+                    <h1>Hey</h1>
+                </Grid>
+            </Grid>
+        </Grid>
     </Container>
   );
 }
  
-export default Login;
+export default Dashboard;
