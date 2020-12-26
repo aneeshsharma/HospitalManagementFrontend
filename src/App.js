@@ -30,6 +30,7 @@ function App() {
                 </Container>
                 <Switch>
                     <Route path="/dashboard" component={Dashboard} />
+                    <Route path="/prescription" component={Prescription} />
                 </Switch>
             </div>
         );
