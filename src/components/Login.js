@@ -8,6 +8,8 @@ import {
     Select,
 } from '@material-ui/core';
 
+import { BACKEND_ENDPOINT } from '../endpoints';
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +21,7 @@ class Login extends React.Component {
             },
         };
         console.log('Started');
+        console.log(BACKEND_ENDPOINT);
     }
 
     handleSubmit = () => {
