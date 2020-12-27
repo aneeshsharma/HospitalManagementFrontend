@@ -1,11 +1,20 @@
 import React from 'react';
-import { Container, TextField, Grid, Button } from '@material-ui/core';
+import {
+    Container,
+    TextField,
+    Grid,
+    Button,
+    MenuItem,
+    Select,
+} from '@material-ui/core';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formData: null,
+            formData: {
+                category: '',
+            },
         };
         console.log('Started');
     }
@@ -57,6 +66,21 @@ class Login extends React.Component {
                             onChange={this.handleTextInput}
                             name="password"
                         />
+                    </Grid>
+                    <Grid item>
+                        <Select
+                            value={this.state.formData.category}
+                            fullWidth
+                            onChange={this.handleTextInput}
+                            name="category"
+                            displayEmpty
+                        >
+                            <MenuItem value="" disabled>
+                                --- Select Category ---
+                            </MenuItem>
+                            <MenuItem value="doctor">Doctor</MenuItem>
+                            <MenuItem value="pharmacy">Pharmacy</MenuItem>
+                        </Select>
                     </Grid>
                     <Grid item>
                         <Button

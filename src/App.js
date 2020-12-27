@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Avatar, Container, Grid } from '@material-ui/core';
+import { Avatar, Grid } from '@material-ui/core';
 
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
