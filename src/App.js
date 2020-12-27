@@ -5,6 +5,7 @@ import { Avatar, Grid } from '@material-ui/core';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Prescription from './components/Prescription';
+import AddPatient from './components/AddPatient';
 // import Home from './Home';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Switch>
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/prescription" component={Prescription} />
+                    <Route path="/add-patient" component={AddPatient} />
                 </Switch>
             </div>
         );
