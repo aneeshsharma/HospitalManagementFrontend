@@ -8,6 +8,7 @@ import Prescription from './components/Prescription';
 import AddPatient from './components/AddPatient';
 import SignUp from './components/SignUp';
 import Treatment from './components/Treatment';
+import AddDrug from './components/AddDrug';
 // import Home from './Home';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                     <Route path="/add-patient" component={AddPatient} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/treatment" component={Treatment} />
+                    <Route path="/add-drug" component={AddDrug} />
                 </Switch>
             </div>
         );
