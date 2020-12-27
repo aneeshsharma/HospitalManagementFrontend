@@ -1,5 +1,5 @@
 let BACKEND_ENDPOINT;
-if (!process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'production') {
     BACKEND_ENDPOINT = 'http://localhost:8080';
 } else {
     BACKEND_ENDPOINT =
@@ -9,6 +9,4 @@ if (!process.env.NODE_ENV === 'production') {
 console.log(BACKEND_ENDPOINT);
 console.log(process.env);
 
-export default {
-    BACKEND_ENDPOINT,
-};
+export default BACKEND_ENDPOINT;

@@ -8,7 +8,7 @@ import {
     Select,
 } from '@material-ui/core';
 
-import { BACKEND_ENDPOINT } from '../endpoints';
+import BACKEND_ENDPOINT from '../endpoint';
 
 class Login extends React.Component {
     constructor(props) {
