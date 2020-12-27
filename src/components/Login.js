@@ -24,7 +24,11 @@ class Login extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
-        this.props.history.push('/dashboard');
+        if (this.state.formData.category == "doctor") {
+            this.props.history.push('/dashboard_d');   
+        } else {
+            this.props.history.push('/dashboard_p');
+        }
 
         localStorage.setItem('user-category', this.state.category);
     };

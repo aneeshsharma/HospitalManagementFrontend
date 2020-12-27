@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Avatar, Grid } from '@material-ui/core';
 
 import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import Dashboard_d from './components/Dashboard_d';
+import Dashboard_p from './components/Dashboard_p';
 import Prescription from './components/Prescription';
 import AddPatient from './components/AddPatient';
 import SignUp from './components/SignUp';
@@ -38,12 +39,13 @@ function App() {
                     </Grid>
                 </div>
                 <Switch>
-                    <Route path="/dashboard" component={Dashboard} />
+                    <Route path="/dashboard_d" component={Dashboard_d} />
                     <Route path="/prescription/:id" component={Prescription} />
                     <Route path="/add-patient" component={AddPatient} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/treatment" component={Treatment} />
                     <Route path="/add-drug" component={AddDrug} />
+                    <Route path="/dashboard_p" component={Dashboard_p} />
                 </Switch>
             </div>
         );
