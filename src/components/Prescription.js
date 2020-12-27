@@ -1,13 +1,6 @@
 import React from 'react';
 
-import {
-    Container,
-    TextField,
-    Grid,
-    Button,
-    Select,
-    MenuItem,
-} from '@material-ui/core';
+import { Container, Grid, Button, Select, MenuItem } from '@material-ui/core';
 
 class Prescription extends React.Component {
     constructor(props) {
