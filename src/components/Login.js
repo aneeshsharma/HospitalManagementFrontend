@@ -14,6 +14,8 @@ class Login extends React.Component {
         this.state = {
             formData: {
                 category: '',
+                name: '',
+                password: '',
             },
         };
         console.log('Started');
@@ -23,6 +25,8 @@ class Login extends React.Component {
         console.log('Submitting');
         console.log(this.state.formData);
         this.props.history.push('/dashboard');
+
+        localStorage.setItem('user-category', this.state.category);
     };
 
     handleTextInput = (e) => {
@@ -56,6 +60,7 @@ class Login extends React.Component {
                             label="Name"
                             onChange={this.handleTextInput}
                             name="name"
+                            value={this.state.formData.name}
                         />
                     </Grid>
                     <Grid item>
@@ -65,6 +70,7 @@ class Login extends React.Component {
                             type="password"
                             onChange={this.handleTextInput}
                             name="password"
+                            value={this.state.formData.password}
                         />
                     </Grid>
                     <Grid item>
