@@ -12,9 +12,14 @@ import {
 class Prescription extends React.Component {
     constructor(props) {
         super(props);
+        const { id } = props.match.params;
+        console.log('Patient id ', id);
         this.state = {
-            formData: {},
+            formData: {
+                patientId: id || '',
+            },
             drugList: [],
+            patients: [],
             selectedDrug: '',
         };
         console.log('Started');
@@ -22,6 +27,7 @@ class Prescription extends React.Component {
 
     componentDidMount() {
         this.getDrugList();
+        this.getPatientList();
     }
 
     handleSubmit = () => {
@@ -52,6 +58,19 @@ class Prescription extends React.Component {
 
         this.setState({
             drugList: items,
+        });
+    };
+
+    getPatientList = () => {
+        /* TODO: Fetch patient list from backend */
+        let patients = [
+            { id: 0, name: 'Joe' },
+            { id: 1, name: 'Alice' },
+            { id: 2, name: 'Bob' },
+        ];
+
+        this.setState({
+            patients: patients,
         });
     };
 
@@ -125,10 +144,37 @@ class Prescription extends React.Component {
         return list;
     };
 
+    renderPatientMenu = () => {
+        var patients = this.state.patients;
+        if (!patients) patients = [];
+
+        var menuItems = patients.map((p) => {
+            return <MenuItem value={p.id}>{p.name}</MenuItem>;
+        });
+
+        return (
+            <Grid item>
+                <Select
+                    value={this.state.formData.patientId}
+                    fullWidth
+                    onChange={this.handleTextInput}
+                    name="patientId"
+                    displayEmpty
+                >
+                    <MenuItem value="" disabled>
+                        --- Select Patient ---
+                    </MenuItem>
+                    {menuItems}
+                </Select>
+            </Grid>
+        );
+    };
+
     render() {
         let renderDrugInput = this.renderDrugInput();
 
         let renderDrugList = this.renderDrugList();
+        let renderPatientMenu = this.renderPatientMenu();
         return (
             <Container style={{ height: '100vh' }}>
                 <Grid
@@ -140,14 +186,7 @@ class Prescription extends React.Component {
                     <Grid item>
                         <h1>Prescription</h1>
                     </Grid>
-                    <Grid item>
-                        <TextField
-                            id="filled-basic"
-                            label="Patient Name"
-                            onChange={this.handleTextInput}
-                            name="patientName"
-                        />
-                    </Grid>
+                    {renderPatientMenu}
                     {renderDrugList}
                     <Grid item>{renderDrugInput}</Grid>
                     <Grid item>
