@@ -125,7 +125,7 @@ class Treatment extends React.Component {
                     <Grid item>
                         <TextField
                             id="filled-basic"
-                            label="Age"
+                            label="Report"
                             value={this.state.formData.report}
                             name="report"
                             onChange={this.handleTextInput}

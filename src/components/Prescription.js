@@ -89,7 +89,7 @@ class Prescription extends React.Component {
         list.push(value);
         this.setState({
             formData: {
-                ...this.formData,
+                ...this.state.formData,
                 drugs: list,
             },
             selectedDrug: '',
