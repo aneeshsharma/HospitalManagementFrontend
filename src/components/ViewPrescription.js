@@ -4,10 +4,8 @@ import axios from 'axios';
 import {
     Container,
     Grid,
-    Button,
     Card,
     CardContent,
-    CardActions,
 } from '@material-ui/core';
 
 import BACKEND_ENDPOINT from '../endpoint';
