@@ -17,14 +17,12 @@ import SelectPatient from './components/SelectPatient';
 
 function App() {
     const NavRoutes = () => {
-        var category = localStorage.getItem('user-category')
-        var id = "";
-        if (category === 'doctor')
-            id = localStorage.getItem('doctor_id',);
-        else if (this.state.formData.category === 'pharmacy')
-            id = localStorage.getItem(
-                'pharmacy_id',
-            );
+        var category = localStorage.getItem('user-category');
+        console.log(category);
+        var id = '';
+        if (category === 'doctor') id = localStorage.getItem('doctor_id');
+        else if (category === 'pharmacy')
+            id = localStorage.getItem('pharmacy_id');
         return (
             <div>
                 <div style={{ width: '100%', margin: '0', padding: '0' }}>
