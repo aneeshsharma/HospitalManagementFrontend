@@ -19,7 +19,7 @@ class SignUp extends React.Component {
             formData: {
                 category: '',
                 name: '',
-                department: '',
+                department_no: '',
                 contact: '',
                 position: '',
                 address: '',
@@ -62,7 +62,21 @@ class SignUp extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
-        this.props.history.push('/dashboard');
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/${this.state.formData.category}/sign-up`;
+        var data = {};
+        for (var field in this.state.formData) {
+            if (this.state.formData[field].length <= 0) data[field] = null;
+            else data[field] = this.state.formData[field];
+        }
+        axios
+            .post(url, data)
+            .then((response) => {
+                console.log(response.data);
+                this.props.history.push('/');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -106,10 +120,10 @@ class SignUp extends React.Component {
         return (
             <Grid item>
                 <Select
-                    value={this.state.formData.department}
+                    value={this.state.formData.department_no}
                     fullWidth
                     onChange={this.handleTextInput}
-                    name="department"
+                    name="department_no"
                     displayEmpty
                 >
                     <MenuItem value="" disabled>

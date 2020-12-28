@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
     Container,
     TextField,
@@ -17,7 +18,6 @@ class Login extends React.Component {
             formData: {
                 category: '',
                 name: '',
-                password: '',
             },
         };
         console.log('Started');
@@ -27,9 +27,29 @@ class Login extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
-        localStorage.setItem('user-category', this.state.formData.category);
 
-        this.props.history.push('/dashboard');
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/${this.state.formData.category}/login?name=${this.state.formData.name}`;
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+                localStorage.setItem(
+                    'user-category',
+                    this.state.formData.category
+                );
+                if (this.state.formData.category === 'doctor')
+                    localStorage.setItem('doctor_id', response.data.doctor_id);
+                else if (this.state.formData.category === 'pharmacy')
+                    localStorage.setItem(
+                        'pharmacy_id',
+                        response.data.pharmacy_id
+                    );
+
+                this.props.history.push('/dashboard');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -68,16 +88,6 @@ class Login extends React.Component {
                             onChange={this.handleTextInput}
                             name="name"
                             value={this.state.formData.name}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            id="filled-basic"
-                            label="Password"
-                            type="password"
-                            onChange={this.handleTextInput}
-                            name="password"
-                            value={this.state.formData.password}
                         />
                     </Grid>
                     <Grid item>
