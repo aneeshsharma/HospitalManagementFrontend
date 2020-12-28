@@ -44,6 +44,7 @@ class Prescription extends React.Component {
             .post(url, data)
             .then((response) => {
                 console.log(response.data);
+                this.props.history.push('/dashboard');
             })
             .catch((err) => {
                 console.log(err);
