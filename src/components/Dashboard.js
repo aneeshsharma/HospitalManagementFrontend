@@ -13,6 +13,10 @@ class Dashboard extends React.Component {
         this.props.history.push('/treatment');
     };
 
+    viewTreatments = () => {
+        this.props.history.push('/patient/treatment-details')
+    };
+
     addPatient = () => {
         this.props.history.push('/add-patient');
     };
@@ -79,6 +83,15 @@ class Dashboard extends React.Component {
                             onClick={this.addTreatment}
                         >
                             Add Treatment
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.viewTreatments}
+                        >
+                            View Treatments
                         </Button>
                     </Grid>
                 </Grid>

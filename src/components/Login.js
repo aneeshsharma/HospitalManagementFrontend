@@ -29,6 +29,7 @@ class Login extends React.Component {
         console.log(this.state.formData);
 
         const url = `${BACKEND_ENDPOINT}/api/v1/resources/${this.state.formData.category}/login?name=${this.state.formData.name}`;
+        console.log(url);
         axios
             .get(url)
             .then((response) => {

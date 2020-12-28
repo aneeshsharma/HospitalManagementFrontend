@@ -9,6 +9,7 @@ import AddPatient from './components/AddPatient';
 import SignUp from './components/SignUp';
 import Treatment from './components/Treatment';
 import AddDrug from './components/AddDrug';
+import ListTreatmentDetails from './components/ListTreatmentDetails';
 // import Home from './Home';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/treatment" component={Treatment} />
                     <Route path="/add-drug" component={AddDrug} />
+                    <Route path="/patient/treatment-details" component={ListTreatmentDetails} />
                 </Switch>
             </div>
         );
