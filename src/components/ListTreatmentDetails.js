@@ -59,7 +59,7 @@ class ListTreatmentDetails extends React.Component {
                 <Card>
                     <CardContent>
                         <p>
-                            {treatmentDetails.treatment_data}
+                            {treatmentDetails.treatment_date}
                             <br />
                             {treatmentDetails.treatment_report}
                             <br />
