@@ -40,12 +40,18 @@ function App() {
                 </div>
                 <Switch>
                     <Route path="/dashboard" component={Dashboard} />
-                    <Route path="/prescription/:id" component={Prescription} />
+                    <Route
+                        path="/prescription/:id/:treat_id"
+                        component={Prescription}
+                    />
                     <Route path="/add-patient" component={AddPatient} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/treatment" component={Treatment} />
                     <Route path="/add-drug" component={AddDrug} />
-                    <Route path="/patient/treatment-details" component={ListTreatmentDetails} />
+                    <Route
+                        path="/patient/treatment-details"
+                        component={ListTreatmentDetails}
+                    />
                 </Switch>
             </div>
         );

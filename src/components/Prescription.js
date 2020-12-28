@@ -8,11 +8,14 @@ import BACKEND_ENDPOINT from '../endpoint';
 class Prescription extends React.Component {
     constructor(props) {
         super(props);
-        const { id } = props.match.params;
+        const { id, treat_id } = props.match.params;
         console.log('Patient id ', id);
+        console.log('Treat id ', treat_id);
         this.state = {
             formData: {
-                patientId: id || '',
+                patient_id: id || '',
+                treat_id: treat_id || '',
+                doctor_id: localStorage.getItem('doctor_id', null),
             },
             drugList: [],
             patients: [],
@@ -29,6 +32,22 @@ class Prescription extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
+
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/doctor/prescription`;
+
+        var data = {
+            ...this.state.formData,
+        };
+        console.log(data);
+
+        axios
+            .post(url, data)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -175,16 +194,20 @@ class Prescription extends React.Component {
         if (!patients) patients = [];
 
         var menuItems = patients.map((p) => {
-            return <MenuItem value={p.id}>{p.name}</MenuItem>;
+            return (
+                <MenuItem value={p.id}>
+                    {p.id} | {p.name}
+                </MenuItem>
+            );
         });
 
         return (
             <Grid item>
                 <Select
-                    value={this.state.formData.patientId}
+                    value={this.state.formData.patient_id}
                     fullWidth
                     onChange={this.handleTextInput}
-                    name="patientId"
+                    name="patient_id"
                     displayEmpty
                 >
                     <MenuItem value="" disabled>
@@ -213,6 +236,7 @@ class Prescription extends React.Component {
                         <h1>Prescription</h1>
                     </Grid>
                     {renderPatientMenu}
+                    <h3>Drugs</h3>
                     {renderDrugList}
                     <Grid item>{renderDrugInput}</Grid>
                     <Grid item>

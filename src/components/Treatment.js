@@ -69,7 +69,7 @@ class Treatment extends React.Component {
             .then((response) => {
                 console.log(response.data);
                 this.props.history.push(
-                    `/prescription/${this.state.formData.patient_id}`
+                    `/prescription/${this.state.formData.patient_id}/${response.data.treat_id}`
                 );
             })
             .catch((err) => {
