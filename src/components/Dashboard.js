@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick={this.addTreatment}
+                            onClick={this.addDrug}
                         >
                             Add Drug
                         </Button>
