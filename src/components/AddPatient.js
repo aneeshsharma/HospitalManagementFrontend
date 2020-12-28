@@ -27,6 +27,7 @@ class AddPatient extends React.Component {
             .post(url, this.state.formData)
             .then((response) => {
                 console.log(response.data);
+                this.props.history.push('/treatment');
             })
             .catch((err) => {
                 console.log(err);

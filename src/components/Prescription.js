@@ -44,17 +44,31 @@ class Prescription extends React.Component {
     };
 
     getDrugList = () => {
-        let items = [
-            { id: 0, value: 'purple pills' },
-            { id: 1, value: 'yellow pills' },
-            { id: 2, value: 'green pills' },
-            { id: 3, value: 'blue pills' },
-            { id: 4, value: 'red pills' },
-        ];
+        let items = [];
 
-        this.setState({
-            drugList: items,
-        });
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/common/drugs`;
+        console.log(url);
+
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+
+                const result = response.data;
+                result.forEach((r) => {
+                    items.push({
+                        id: r.drug_id,
+                        value: `${r.drug_name} | Class ${r.class}`,
+                    });
+                });
+
+                this.setState({
+                    drugList: items,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     getPatientList = () => {

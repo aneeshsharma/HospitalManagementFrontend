@@ -1,13 +1,16 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Container, TextField, Grid, Button } from '@material-ui/core';
+
+import BACKEND_ENDPOINT from '../endpoint';
 
 class AddDrug extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             formData: {
-                drugName: '',
+                drug_name: '',
                 class: '',
             },
         };
@@ -16,6 +19,23 @@ class AddDrug extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
+
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/common/drugs`;
+
+        axios
+            .post(url, this.state.formData)
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    formData: {
+                        drug_name: '',
+                        class: '',
+                    },
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -65,8 +85,8 @@ class AddDrug extends React.Component {
                         <TextField
                             id="filled-basic"
                             label="Drug Name"
-                            value={this.state.formData.drugName}
-                            name="drugName"
+                            value={this.state.formData.drug_name}
+                            name="drug_name"
                             onChange={this.handleTextInput}
                         />
                     </Grid>
