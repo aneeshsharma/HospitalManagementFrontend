@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Container, Grid, Button, Select, MenuItem } from '@material-ui/core';
+
+import BACKEND_ENDPOINT from '../endpoint';
 
 class Prescription extends React.Component {
     constructor(props) {
@@ -56,15 +59,31 @@ class Prescription extends React.Component {
 
     getPatientList = () => {
         /* TODO: Fetch patient list from backend */
-        let patients = [
-            { id: 0, name: 'Joe' },
-            { id: 1, name: 'Alice' },
-            { id: 2, name: 'Bob' },
-        ];
+        let patients = [];
 
-        this.setState({
-            patients: patients,
-        });
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/doctor/patient`;
+        console.log(url);
+
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+
+                const result = response.data;
+                result.forEach((r) => {
+                    patients.push({
+                        id: r.patient_id,
+                        name: r.name,
+                    });
+                });
+
+                this.setState({
+                    patients: patients,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleDrugInput = (e) => {

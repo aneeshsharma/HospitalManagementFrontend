@@ -49,14 +49,14 @@ class SignUp extends React.Component {
                         name: r.department_name,
                     });
                 });
+
+                this.setState({
+                    departments: departments,
+                });
             })
             .catch((err) => {
                 console.log(err);
             });
-
-        this.setState({
-            departments: departments,
-        });
     };
 
     handleSubmit = () => {

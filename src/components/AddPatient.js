@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Container, TextField, Grid, Button } from '@material-ui/core';
+
+import BACKEND_ENDPOINT from '../endpoint';
 
 class AddPatient extends React.Component {
     constructor(props) {
@@ -9,7 +12,7 @@ class AddPatient extends React.Component {
             formData: {
                 contact: '',
                 age: '',
-                patientName: '',
+                name: '',
             },
         };
     }
@@ -17,6 +20,17 @@ class AddPatient extends React.Component {
     handleSubmit = () => {
         console.log('Submitting');
         console.log(this.state.formData);
+
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/doctor/patient`;
+
+        axios
+            .post(url, this.state.formData)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -66,8 +80,8 @@ class AddPatient extends React.Component {
                         <TextField
                             id="filled-basic"
                             label="Patient Name"
-                            value={this.state.formData.patientName}
-                            name="patientName"
+                            value={this.state.formData.name}
+                            name="name"
                             onChange={this.handleTextInput}
                         />
                     </Grid>
