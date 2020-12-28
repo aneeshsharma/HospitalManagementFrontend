@@ -17,8 +17,9 @@ class Treatment extends React.Component {
         super(props);
         this.state = {
             formData: {
-                patientId: '',
-                report: '',
+                patient_id: '',
+                treatment_report: '',
+                doctor_id: localStorage.getItem('doctor_id', null),
             },
             patients: [],
         };
@@ -61,11 +62,19 @@ class Treatment extends React.Component {
         console.log('Submitting');
         console.log(this.state.formData);
 
-        /* TODO: Submit treatment data to backend */
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/doctor/treatment`;
 
-        this.props.history.push(
-            `/prescription/${this.state.formData.patientId}`
-        );
+        axios
+            .post(url, this.state.formData)
+            .then((response) => {
+                console.log(response.data);
+                this.props.history.push(
+                    `/prescription/${this.state.formData.patient_id}`
+                );
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleTextInput = (e) => {
@@ -110,10 +119,10 @@ class Treatment extends React.Component {
         return (
             <Grid item>
                 <Select
-                    value={this.state.formData.patientId}
+                    value={this.state.formData.patient_id}
                     fullWidth
                     onChange={this.handleTextInput}
-                    name="patientId"
+                    name="patient_id"
                     displayEmpty
                 >
                     <MenuItem value="" disabled>
@@ -145,8 +154,8 @@ class Treatment extends React.Component {
                         <TextField
                             id="filled-basic"
                             label="Report"
-                            value={this.state.formData.report}
-                            name="report"
+                            value={this.state.formData.treatment_report}
+                            name="treatment_report"
                             onChange={this.handleTextInput}
                         />
                     </Grid>
