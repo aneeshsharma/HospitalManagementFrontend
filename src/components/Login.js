@@ -43,6 +43,10 @@ class Login extends React.Component {
             },
         });
     };
+
+    handleSignup = (e) => {
+        this.props.history.push('/sign-up');
+    };
     render() {
         return (
             <Container maxWidth="100%" style={{ height: '100vh' }}>
@@ -98,6 +102,15 @@ class Login extends React.Component {
                             onClick={this.handleSubmit}
                         >
                             Login
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleSignup}
+                        >
+                            Register
                         </Button>
                     </Grid>
                 </Grid>

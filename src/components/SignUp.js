@@ -1,4 +1,6 @@
 import React from 'react';
+
+import axios from 'axios';
 import {
     Container,
     TextField,
@@ -7,6 +9,8 @@ import {
     MenuItem,
     Select,
 } from '@material-ui/core';
+
+import BACKEND_ENDPOINT from '../endpoint';
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -28,11 +32,27 @@ class SignUp extends React.Component {
     }
 
     getDepartments = () => {
-        let departments = [
-            { id: 0, name: 'Department 0' },
-            { id: 1, name: 'Department 1' },
-            { id: 2, name: 'Department 2' },
-        ];
+        let departments = [];
+
+        const url = `${BACKEND_ENDPOINT}/api/v1/resources/common/getDepartment`;
+        console.log(url);
+
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+
+                const result = response.data;
+                result.forEach((r) => {
+                    departments.push({
+                        id: r.department_no,
+                        name: r.department_name,
+                    });
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
         this.setState({
             departments: departments,
