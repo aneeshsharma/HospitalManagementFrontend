@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     };
 
     viewTreatments = () => {
-        this.props.history.push('/patient/treatment-details')
+        this.props.history.push('/select-patient');
     };
 
     addPatient = () => {
@@ -46,6 +46,15 @@ class Dashboard extends React.Component {
                             onClick={this.addDrug}
                         >
                             Add Drug
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.viewTreatments}
+                        >
+                            View Treatments
                         </Button>
                     </Grid>
                 </Grid>

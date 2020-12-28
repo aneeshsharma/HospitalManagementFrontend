@@ -10,6 +10,9 @@ import SignUp from './components/SignUp';
 import Treatment from './components/Treatment';
 import AddDrug from './components/AddDrug';
 import ListTreatmentDetails from './components/ListTreatmentDetails';
+import ViewPrescription from './components/ViewPrescription';
+
+import SelectPatient from './components/SelectPatient';
 // import Home from './Home';
 
 function App() {
@@ -49,7 +52,12 @@ function App() {
                     <Route path="/treatment" component={Treatment} />
                     <Route path="/add-drug" component={AddDrug} />
                     <Route
-                        path="/patient/treatment-details"
+                        path="/view-prescription/:treat_id"
+                        component={ViewPrescription}
+                    />
+                    <Route path="/select-patient" component={SelectPatient} />
+                    <Route
+                        path="/patient/treatment-details/:patient_id"
                         component={ListTreatmentDetails}
                     />
                 </Switch>
