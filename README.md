@@ -7,6 +7,7 @@ This is the frontend app for the Hospital Management System.
 Make sure you have `nodejs` installed (version 14+).
 
 Also, a local backend can be used. The repositiory to the backend is [here](https://github.com/aneeshsharma/HospitalManagementBackend/)
+
 Or, you can switch to the hosted backend from the `src/endpoint.js` file. Use the "production" server for the backend.
 
 ## Starting the app locally
